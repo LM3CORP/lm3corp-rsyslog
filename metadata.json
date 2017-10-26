@@ -1,0 +1,30 @@
+{
+  "name": "lm3corp-rsyslog",
+  "version": "0.1.0",
+  "author": "lm3corp",
+  "summary": "https://github.com/saz/puppet-rsyslog",
+  "license": "Apache-2.0",
+  "source": "https://github.com/LM3CORP/lm3corp-rsyslog/issues",
+  "project_page": "https://github.com/LM3CORP/lm3corp-rsyslog",
+  "issues_url": "https://github.com/LM3CORP/lm3corp-rsyslog/issues",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    },
+    {
+      "name": "saz/puppet-rsyslog",
+      "version_requirement": ">= 5.0.0"
+    }
+  ],
+  "data_provider": null
+}
+

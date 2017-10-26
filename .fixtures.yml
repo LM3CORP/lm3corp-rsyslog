@@ -1,0 +1,6 @@
+fixtures:
+  repositories:
+    stdlib: "git@github.com:puppetlabs/puppetlabs-stdlib.git"
+    rsyslog: "git@github.com:saz/puppet-rsyslog.git"
+  symlinks:
+    lm3corp_rsyslog: "#{source_dir}"

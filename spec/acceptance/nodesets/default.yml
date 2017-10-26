@@ -1,0 +1,12 @@
+HOSTS:
+  ubuntu-1404-x64-master:
+    roles:
+      - master
+      - dashboard
+      - database
+    platform: ubuntu-14.04-amd64
+    hypervisor: vagrant
+    box: puppetlabs/ubuntu-14.04-64-nocm
+CONFIG:
+  type: foss
+  consoleport: 443

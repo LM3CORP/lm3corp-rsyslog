@@ -5,6 +5,7 @@ require 'beaker/puppet_install_helper'
 #require 'beaker/module_install_helper'
 
 # Install Puppet on all hosts
+install_puppet_agent_on(hosts, options)
 run_puppet_install_helper unless ENV['BEAKER_provision'] == 'no'
 
 RSpec.configure do |c|

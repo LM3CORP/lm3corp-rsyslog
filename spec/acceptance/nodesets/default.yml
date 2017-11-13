@@ -1,15 +1,21 @@
 HOSTS:
-  ubuntu-1404-x64-master:
+  rsyslogserver:
     roles:
       - agent
-      - default
-      - master
-      - dashboard
-      - database
     platform: ubuntu-14.04-amd64
     hypervisor: vagrant
     vagrant_memsize: 4096
+    ip: 10.10.11.10
+    box: puppetlabs/ubuntu-14.04-64-nocm
+  rsyslogclient:
+    roles:
+      - agent
+      - rsyslogclient
+      - default
+    platform: ubuntu-14.04-amd64
+    hypervisor: vagrant
+    vagrant_memsize: 4096
+    ip: 10.10.11.11
     box: puppetlabs/ubuntu-14.04-64-nocm
 CONFIG:
   type: foss
-  consoleport: 443

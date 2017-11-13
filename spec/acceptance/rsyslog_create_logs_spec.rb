@@ -1,23 +1,19 @@
 require 'spec_helper_acceptance'
 
-apply_manifests_opts = {
-  :catch_failures => true,
-  :modulepath     => '/etc/puppetlabs/code/environments/production/modules',
-  :debug          => true
-}
+hosts_as('rsyslogclient').each do |host|
 
 describe 'lm3corp_rsyslog::client class' do
   pp = <<-EOS
-    class { 'lm3corp_rsyslog::client': }
+    class { 'lm3corp_rsyslog::client':
+       server => '10.10.11.10'
+    }
   EOS
 
 
   it 'should run without errors' do
-    result = apply_manifest(pp, apply_manifests_opts )
+    result = apply_manifest_on(host,pp, :catch_failures => true)
     expect(result.exit_code).to eq 2
   end
 
-  #TODO: after creating a server and a client a file on the server should contain some sort of logging from the client
-  #
-
+  end
 end

@@ -1,13 +1,11 @@
 require 'beaker-rspec'
-#require 'beaker-rspec/spec_helper'
-#require 'beaker-rspec/helpers/serverspec'
+require 'beaker-rspec/spec_helper'
+require 'beaker-rspec/helpers/serverspec'
 require 'beaker/puppet_install_helper'
-#require 'beaker/module_install_helper'
 
 # Install Puppet on all hosts
-install_puppet_agent_on(hosts, options)
-run_puppet_install_helper unless ENV['BEAKER_provision'] == 'no'
 
+run_puppet_install_helper
 RSpec.configure do |c|
   module_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
@@ -21,7 +19,17 @@ RSpec.configure do |c|
       # Install dependencies
       on(host, puppet('module', 'install', 'puppetlabs-stdlib'))
       on(host, puppet('module', 'install', 'saz-rsyslog'))
+     
+      if host.name == 'rsyslogserver'
       # Add more setup code as needed
+        pp = <<-EOS
+          class { 'lm3corp_rsyslog::server':
+            port           => '514',
+          }
+        EOS
+        apply_manifest_on(host, pp, :catch_failures => false)
+      end
+
     end
   end
 end

@@ -1,12 +1,14 @@
 
 
-class lm3corp_rsyslog::server {
+class lm3corp_rsyslog::server(
+  String $port = undef,
+) {
 
   class { 'rsyslog::server':
     #log_local => true,
     enable_tcp => true,
     enable_udp => true,
-    port       => '514',
+    port       => $port,
     address    => '*',
   }
 
